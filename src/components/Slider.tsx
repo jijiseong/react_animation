@@ -1,27 +1,45 @@
-import { AnimatePresence, Variants } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Box } from "./Box";
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SlideList = styled.div`
+  width: 100%;
+  height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+const SlideList = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const Button = styled(motion.button)`
+  position: absolute;
+  border: 0;
+  background-color: inherit;
+  color: white;
+  font-size: 100px;
+`;
+
 const boxVars: Variants = {
   entry: (value: boolean) => {
-    console.log("entry", value);
+    if (value === null) {
+      return {
+        x: 0,
+        opacity: 0,
+      };
+    }
     return {
-      x: value ? -350 : 350,
+      x: value ? -500 : 500,
       opacity: 0,
       scale: 0,
     };
@@ -31,31 +49,47 @@ const boxVars: Variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
+      duration: 0.5,
     },
   },
-  exit: (value: boolean) => {
-    console.log("exit", value);
+  exit: (value: boolean | null) => {
+    if (value === null) {
+      return {
+        x: 0,
+        opacity: 0,
+      };
+    }
+
     return {
-      x: value ? 350 : -350,
+      x: value ? 500 : -500,
       opacity: 0,
       scale: 0,
       transition: {
-        duration: 1,
+        duration: 0.5,
       },
     };
   },
 };
 
+const buttonVars: Variants = {
+  hover: {
+    scale: 1.2,
+    cursor: "pointer",
+  },
+  click: (value) => ({
+    x: value,
+  }),
+};
+
 export default function Slider() {
   const [visibleIdx, setVisibleIdx] = useState(1);
-  const [back, setBack] = useState<{ value: boolean }>({ value: false });
+  const [back, setBack] = useState<{ value: boolean | null }>({ value: null });
 
   const nextPlease = () => {
-    setBack({ value: false });
+    setBack({ value: true });
   };
   const prevPlease = () => {
-    setBack({ value: true });
+    setBack({ value: false });
   };
 
   useEffect(() => {
@@ -68,23 +102,41 @@ export default function Slider() {
 
   return (
     <Container>
+      <Button
+        custom={20}
+        variants={buttonVars}
+        whileHover="hover"
+        whileTap="click"
+        style={{ right: 100 }}
+        onClick={nextPlease}
+      >
+        <FontAwesomeIcon icon={faArrowRight} />
+      </Button>
       <SlideList>
         <AnimatePresence mode="sync" custom={back.value}>
           <Box
             custom={back.value}
-            style={{ position: "absolute", top: "100px" }}
+            style={{ position: "absolute", transform: "translate(-50%, -50%)" }}
             variants={boxVars}
             initial="entry"
             exit="exit"
             animate="center"
             key={visibleIdx}
           >
-            {visibleIdx}
+            <span>{visibleIdx}</span>
           </Box>
         </AnimatePresence>
       </SlideList>
-      <button onClick={nextPlease}>next</button>
-      <button onClick={prevPlease}>prev</button>
+      <Button
+        custom={-20}
+        variants={buttonVars}
+        whileHover="hover"
+        whileTap="click"
+        style={{ left: 100 }}
+        onClick={prevPlease}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </Button>
     </Container>
   );
 }

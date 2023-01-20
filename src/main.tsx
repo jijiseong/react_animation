@@ -1,9 +1,10 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import { Outlet, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 import App from "./App";
-
+import router from "./Router";
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -59,7 +60,7 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  color:white;
   line-height: 1.2;
   background: linear-gradient(135deg, rgb(255, 134, 255), rgb(148, 7, 212));
   overflow-x: hidden;
@@ -71,8 +72,11 @@ a {
 `;
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RecoilRoot>
-    <GlobalStyle />
-    <App />
-  </RecoilRoot>
+  <StrictMode>
+    <RecoilRoot>
+      <RouterProvider router={router} />
+      <GlobalStyle />
+      <Outlet />
+    </RecoilRoot>
+  </StrictMode>
 );

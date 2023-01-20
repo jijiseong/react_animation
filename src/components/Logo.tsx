@@ -1,4 +1,5 @@
 import { motion, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const svgVars: Variants = {
