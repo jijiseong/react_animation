@@ -1,16 +1,74 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { motion } from "framer-motion";
-import Logo from "./components/Logo";
-import TouchBox from "./components/TouchBox";
-import PrisonBox from "./components/PrisonBox";
-import ScrollBox from "./components/ScrollBox";
-import { useRecoilValue } from "recoil";
-import { bgGradientState } from "./atoms";
-import DragXBox from "./components/DragXBox";
-import Slider from "./components/Slider";
-import { OverlayBox } from "./components/OverlayBox";
+
 import NavBar from "./components/NavBar";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
+const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+    display: none;
+}
+body {
+  line-height: 1;
+}
+menu, ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  color:white;
+  line-height: 1.2;
+  background: linear-gradient(135deg, rgb(255, 134, 255), rgb(148, 7, 212));
+  overflow-x: hidden;
+}
+a {
+  text-decoration:none;
+  color:inherit;
+}
+`;
 
 const Wrapper = styled(motion.div)`
   height: 100vh;
@@ -18,34 +76,15 @@ const Wrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, rgb(255, 134, 255), rgb(148, 7, 212));
-`;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 `;
 
-const OutletBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 600px;
-`;
-
 function App() {
-  const bgGradient = useRecoilValue(bgGradientState);
   return (
-    <Wrapper style={{ background: bgGradient }}>
-      <Container>
-        <NavBar />
-        <OutletBox>
-          <Outlet />
-        </OutletBox>
-      </Container>
+    <Wrapper>
+      <GlobalStyle />
+      <NavBar />
+      <Outlet />
     </Wrapper>
   );
 }

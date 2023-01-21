@@ -7,11 +7,8 @@ import styled from "styled-components";
 import { Box } from "./Box";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -19,15 +16,15 @@ const SlideList = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 `;
 
 const Button = styled(motion.button)`
-  position: absolute;
   border: 0;
   background-color: inherit;
   color: white;
   font-size: 100px;
+  margin-left: 200px;
+  margin-right: 200px;
 `;
 
 const boxVars: Variants = {
@@ -79,6 +76,15 @@ const buttonVars: Variants = {
   click: (value) => ({
     x: value,
   }),
+  initial: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };
 
 export default function Slider() {
@@ -103,14 +109,16 @@ export default function Slider() {
   return (
     <Container>
       <Button
-        custom={20}
+        custom={-20}
         variants={buttonVars}
         whileHover="hover"
         whileTap="click"
-        style={{ right: 100 }}
+        style={{ left: 100 }}
         onClick={nextPlease}
+        initial="initial"
+        animate="visible"
       >
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={faArrowLeft} />
       </Button>
       <SlideList>
         <AnimatePresence mode="sync" custom={back.value}>
@@ -128,14 +136,16 @@ export default function Slider() {
         </AnimatePresence>
       </SlideList>
       <Button
-        custom={-20}
+        custom={20}
         variants={buttonVars}
         whileHover="hover"
         whileTap="click"
-        style={{ left: 100 }}
+        style={{ right: 100 }}
         onClick={prevPlease}
+        initial="initial"
+        animate="visible"
       >
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <FontAwesomeIcon icon={faArrowRight} />
       </Button>
     </Container>
   );

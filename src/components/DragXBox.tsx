@@ -1,14 +1,17 @@
-import {
-  useMotionValue,
-  useMotionValueEvent,
-  useTransform,
-} from "framer-motion";
-import { useSetRecoilState } from "recoil";
-import { bgGradientState } from "../atoms";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import styled from "styled-components";
 import { Box } from "./Box";
 
+const Wrapper = styled(motion.div)`
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+
 export default function DragXBox() {
-  const setBgGradient = useSetRecoilState(bgGradientState);
   const x = useMotionValue(0); // this is not state.
   const rotateZ = useTransform(x, [-800, 800], [-360, 360]);
   const gradient = useTransform(
@@ -21,13 +24,18 @@ export default function DragXBox() {
     ]
   );
 
-  useMotionValueEvent(gradient, "change", (value) => {
-    setBgGradient(value);
-  });
-
   return (
-    <Box style={{ x, rotateZ }} drag="x" dragSnapToOrigin>
-      <span>Drag me!</span>
-    </Box>
+    <Wrapper style={{ background: gradient }}>
+      <Box
+        style={{ x, rotateZ, position: "absolute" }}
+        drag="x"
+        dragSnapToOrigin
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <span>Drag me!</span>
+      </Box>
+    </Wrapper>
   );
 }

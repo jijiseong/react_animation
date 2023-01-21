@@ -1,16 +1,19 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { Box } from "./Box";
 
 const Nav = styled.header`
+  position: absolute;
+  top: 0;
   width: 60vw;
   height: 4vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 80px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 100;
 `;
 
 const Highlight = styled(motion.div)`
