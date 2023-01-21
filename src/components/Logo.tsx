@@ -19,9 +19,10 @@ const svgVars: Variants = {
 const containerVars: Variants = {
   hover: {
     scale: 1.2,
-    rotateZ: 360,
+    rotateZ: 50000,
     transition: {
-      duration: 1,
+      type: "tween",
+      duration: 100,
     },
   },
   click: {},
