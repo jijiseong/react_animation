@@ -8,45 +8,48 @@ import PrisonBox from "./components/PrisonBox";
 import ScrollBox from "./components/ScrollBox";
 import Slider from "./components/Slider";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-      {
-        path: "prison",
-        element: <PrisonBox />,
-      },
-      {
-        path: "logo",
-        element: <Logo />,
-      },
-      {
-        path: "prison",
-        element: <PrisonBox />,
-      },
-      {
-        path: "scroll",
-        element: <ScrollBox />,
-      },
-      {
-        path: "dragx",
-        element: <DragXBox />,
-      },
-      {
-        path: "overlay",
-        element: <OverlayBox />,
-      },
-      {
-        path: "slider",
-        element: <Slider />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+        {
+          path: "prison",
+          element: <PrisonBox />,
+        },
+        {
+          path: "logo",
+          element: <Logo />,
+        },
+        {
+          path: "prison",
+          element: <PrisonBox />,
+        },
+        {
+          path: "scroll",
+          element: <ScrollBox />,
+        },
+        {
+          path: "dragx",
+          element: <DragXBox />,
+        },
+        {
+          path: "overlay",
+          element: <OverlayBox />,
+        },
+        {
+          path: "slider",
+          element: <Slider />,
+        },
+      ],
+    },
+  ],
+  { basename: "/react_animation" }
+);
 
 export default router;

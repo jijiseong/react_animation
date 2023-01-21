@@ -38,7 +38,6 @@ const StyleLink = styled(Link)`
 
 export default function NavBar() {
   const { pathname } = useLocation();
-
   const pathList: { [key: string]: string } = {
     home: "/",
     logo: "/logo",
