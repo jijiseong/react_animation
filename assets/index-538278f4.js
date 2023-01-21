@@ -254,7 +254,7 @@ a {
   margin: 10px;
   cursor: pointer;
   text-shadow: 2px 2px rgba(255, 255, 255, 0.2);
-`,i0={hidden:{opacity:1,scale:0},visible:{opacity:1,scale:1,transition:{delayChildren:.3,staggerChildren:.03}}},a0={hidden:{y:20,opacity:0},visible:{y:0,opacity:1}};function jI(){const e=["W","E","L","C","O","M","E"],t=k.useRef(null);return uo(zI,{ref:t,children:[ve(UI,{variants:i0,initial:"hidden",animate:"visible",children:e.map(n=>ve(o0,{drag:!0,dragConstraints:t,variants:a0,dragElastic:1,children:ve(r0,{children:n})}))}),ve(BI,{variants:i0,initial:"hidden",animate:"visible",children:e.map(n=>ve(o0,{variants:a0,children:ve(r0,{children:n})}))})]})}const WI={start:{pathLength:0,fill:"rgba(255,255,255,0)"},end:{pathLength:1,fill:"rgba(255,255,255,1)",transition:{default:{duration:4},fill:{duration:1,delay:1.5}}}},HI={hover:{scale:1.2,rotateZ:360,transition:{duration:1}},click:{}},GI=it.svg`
+`,i0={hidden:{opacity:1,scale:0},visible:{opacity:1,scale:1,transition:{delayChildren:.3,staggerChildren:.03}}},a0={hidden:{y:20,opacity:0},visible:{y:0,opacity:1}};function jI(){const e=["W","E","L","C","O","M","E"],t=k.useRef(null);return uo(zI,{ref:t,children:[ve(UI,{variants:i0,initial:"hidden",animate:"visible",children:e.map(n=>ve(o0,{drag:!0,dragConstraints:t,variants:a0,dragElastic:1,children:ve(r0,{children:n})}))}),ve(BI,{variants:i0,initial:"hidden",animate:"visible",children:e.map(n=>ve(o0,{variants:a0,children:ve(r0,{children:n})}))})]})}const WI={start:{pathLength:0,fill:"rgba(255,255,255,0)"},end:{pathLength:1,fill:"rgba(255,255,255,1)",transition:{default:{duration:4},fill:{duration:1,delay:1.5}}}},HI={hover:{scale:1.2,rotateZ:5e4,transition:{type:"tween",duration:100}},click:{}},GI=it.svg`
   width: 300px;
   height: 300px;
   color: white;
