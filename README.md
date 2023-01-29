@@ -15,7 +15,7 @@ https://jijiseong.github.io/react_animation
 ![1_AdobeExpress](https://user-images.githubusercontent.com/77661228/215305779-f73b7b98-3605-4bac-bf75-0604b793f14e.gif)
 
 ### SVG animation
-![2_AdobeExpress](https://user-images.githubusercontent.com/77661228/215305821-92918292-596f-40af-aa3d-b55d4fc136d3.gif)
+![2_AdobeExpress](https://user-images.githubusercontent.com/77661228/215306111-38b77392-2dde-465e-b377-8c8897d5c062.gif)
 
 ### Drag constraint
 ![3_AdobeExpress](https://user-images.githubusercontent.com/77661228/215305836-6436078b-9d18-4bad-8c33-8f023ae016ab.gif)
